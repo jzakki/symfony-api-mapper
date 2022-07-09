@@ -1,0 +1,1 @@
+{"version":1,"defects":{"SymfonyApiMapper\\Tests\\Unit\\MapperFactoryTest::testCanCreateJsonMapper":4},"times":{"SymfonyApiMapper\\Tests\\Unit\\MapperFactoryTest::testCanCreateJsonMapper":0.002,"SymfonyApiMapper\\Tests\\Unit\\MapperFactoryTest::testCanCreateXmlMapper":0}}

@@ -1,0 +1,29 @@
+{
+    "name": "jzakki/jmapper",
+    "description": "This is a package for mapping responded objects from third-party APIs to symfony corresponding entity objects.",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "SymfonyApiMapper\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SymfonyApiMapper\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "javadzakki"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require-dev": {
+        "symfony/dependency-injection": "6.2.x-dev",
+        "symfony/config": "6.2.x-dev",
+        "symfony/http-kernel": "6.2.x-dev",
+        "symfony/yaml": "6.2.x-dev",
+        "phpunit/phpunit": "^9.5"
+    }
+}
