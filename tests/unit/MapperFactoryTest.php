@@ -15,7 +15,7 @@ class MapperFactoryTest extends TestCase
     public function testCanCreateJsonMapper()
     {
         $mapperFactory = new JsonMapperFactory();
-        $mapper = $mapperFactory->createMapperInterface();
+        $mapper = $mapperFactory->create();
 
         $this->assertInstanceOf(JsonMapper::class, $mapper);
     }
@@ -23,8 +23,8 @@ class MapperFactoryTest extends TestCase
     public function testCanCreateXmlMapper()
     {
         $mapperFactory = new XmlMapperFactory();
-        $mapper = $mapperFactory->createMapperInterface();
+        $mapper = $mapperFactory->create();
 
         $this->assertInstanceOf(XmlMapper::class, $mapper);
     }
-} 
+}

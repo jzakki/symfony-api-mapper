@@ -6,8 +6,17 @@ namespace SymfonyApiMapper;
 
 class XmlMapperFactory implements MapperFactory
 {
-    public function createMapperInterface(): MapperInterface
+    /** @var XmlMapperBuilder */
+    private $builder;
+
+    public function __construct(XmlMapperBuilder $builder = null)
     {
-        return new XmlMapper();
+        $this->builder = $builder ?? XmlMapperBuilder::new();
+    }
+
+    public function create(): MapperInterface
+    {
+        $builder = clone ($this->builder);
+        return $builder->build();
     }
 }

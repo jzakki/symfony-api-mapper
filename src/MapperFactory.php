@@ -9,5 +9,5 @@ interface MapperFactory
     /**
      * @return MapperInterface;
      */
-    public function createMapperInterface(): MapperInterface;
+    public function create(): MapperInterface;
 }
