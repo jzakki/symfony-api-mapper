@@ -1,0 +1,10 @@
+parameters:
+    #nothing to declare
+
+services:
+    SymfonyApiMapper\SymfonyApiMapper:
+        autowire: true
+
+    app.mapper:
+        alias: SymfonyApiMapper\SymfonyApiMapper
+        public: true 
