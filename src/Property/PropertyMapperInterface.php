@@ -14,6 +14,7 @@ interface PropertyMapperInterface
         stdClass $response,
         ObjectWrapper $object,
         PropertyMap $propertyMap,
+        array $map,
         MapperInterface $mapperInterface
     ): void;
 }

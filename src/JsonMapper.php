@@ -7,6 +7,7 @@ namespace SymfonyApiMapper;
 use SymfonyApiMapper\Exception\TypeException;
 use SymfonyApiMapper\Property\PropertyMap;
 use SymfonyApiMapper\Wrapper\ObjectWrapper;
+use Symfony\Component\Yaml\Yaml;
 
 class JsonMapper implements MapperInterface 
 {
@@ -42,9 +43,12 @@ class JsonMapper implements MapperInterface
             throw TypeException::forArgument(__METHOD__, 'object', $object, 2, '$object');
         }
 
+        // This is a temporary script 
+        $map = Yaml::parseFile(dirname(__DIR__,1).'/config/map.yaml');
+
         $propertyMap = new PropertyMap();
         $handler = $this->resolve();
-        $handler($json, new ObjectWrapper($object), $propertyMap, $this);
+        $handler($json, new ObjectWrapper($object), $propertyMap, $map, $this);
     }
 
     /** @return Callable */
