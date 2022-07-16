@@ -1,2 +1,2 @@
-User:
- full_name: name
+SymfonyApiMapper\Entity\User:
+    full_name: name

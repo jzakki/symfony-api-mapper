@@ -7,9 +7,9 @@ namespace SymfonyApiMapper;
 interface MapperInterface
 {
     /**
-     * @param \stdClass $response
+     * @param $response
      * @param mixed $object 
      * @return string
      */
-    public function map(\stdClass $response, $object);
+    public function map($response, $object);
 }

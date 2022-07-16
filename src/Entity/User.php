@@ -6,18 +6,20 @@ namespace SymfonyApiMapper\Entity;
 
 class User
 {
-    /** @var string */
-    private string $name;
+    public function __construct(){}
 
-    /** @param string $name */
-    public function setName($name): void
+    /** @var string */
+    private $full_name;
+
+    /** @param string $full_name */
+    public function setFull_Name($full_name): void
     {
-        $this->name = $name;
+        $this->full_name = $full_name;
     }
 
     /** @return string */
-    public function getName(): string
+    public function getFull_Name(): string
     {
-        return $this->name;
+        return $this->full_name;
     }
 }

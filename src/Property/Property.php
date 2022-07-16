@@ -4,16 +4,22 @@ declare(strict_types=1);
 
 namespace SymfonyApiMapper\Property;
 
-class Property
+use JsonSerializable;
+use SymfonyApiMapper\Enum\Visibility;
+
+class Property implements JsonSerializable
 {
 
     /** @var string */
     private $name;
 
+    /** @var string */
+    private $apiEqualsToName;
+
     /** @var bool */
     private $isNullable;
 
-    /** @var string */
+    /** @var Visibility */
     private $visibility;
 
     /** @var PropertyType[] */
@@ -22,27 +28,24 @@ class Property
     /**
      * @param string
      * @param string
+     * @param Visibility
      * @param bool
      * @param PropertyType
      */
     public function __construct(
         string $name,
-        string $visibility,
+        string $apiEqualsToName,
+        Visibility $visibility,
         bool $isNullable,
         PropertyType ...$types
     ) {
         $this->name = $name;
+        $this->apiEqualsToName = $apiEqualsToName;
         $this->isNullable = $isNullable;
         $this->visibility = $visibility;
         $this->types = $types;
     }
 
-    /** @param string */
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-        return $this;
-    }
 
     /** @return string */
     public function getName(): string
@@ -50,37 +53,23 @@ class Property
         return $this->name;
     }
 
-    /** @param PropertyType[] */
-    public function setTypes(PropertyType ...$types): self
+    /** @return string */
+    public function getApiEqualsToName(): string
     {
-        $this->types = $types;
-        return $this;
+        return $this->apiEqualsToName;
     }
 
+    
     /** @return PropertyType[] */
     public function getTypes(): array
     {
-        return $this->propertyTypes;
+        return $this->types;
     }
 
-    /** @param string */
-    public function setVisibility(string $visibility): self
-    {
-        $this->visibility = $visibility;
-        return $this;
-    }
-
-    /** @return string */
-    public function getVisibility(): string
+    /** @return Visibility */
+    public function getVisibility(): Visibility
     {
         return $this->visibility;
-    }
-
-    /** @param bool */
-    public function setIsNullable(bool $isNullable): self
-    {
-        $this->isNullable = $isNullable;
-        return $this;
     }
 
     /** @return bool*/
@@ -92,7 +81,31 @@ class Property
     /** @return int */
     public function isUnion(): bool
     {
-        return \count($this->propertyTypes) > 1;
+        return \count($this->types) > 1;
+    }
+
+    /**
+     * @return PropertyBuilder
+     */
+    public function asBuilder(): PropertyBuilder
+    {
+        return PropertyBuilder::new()
+            ->setName($this->name)
+            ->setApiEqualsToName($this->apiEqualsToName)
+            ->setTypes(...$this->types)
+            ->setIsNullable($this->isNullable())
+            ->setVisibility($this->visibility);
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'name' => $this->name,
+            'apiEqualsToName' => $this->apiEqualsToName,
+            'types' => $this->types,
+            'visibility' => $this->visibility,
+            'isNullable' => $this->isNullable,
+        ];
     }
 
 }

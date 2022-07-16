@@ -6,7 +6,6 @@ namespace SymfonyApiMapper;
 
 class JsonMapperFactory implements MapperFactory
 {
-
     /** @var JsonMapperBuilder */
     private $builder;
 
@@ -18,7 +17,6 @@ class JsonMapperFactory implements MapperFactory
     public function create(): MapperInterface
     {
         $builder = clone ($this->builder);
-        
         return $builder->build();
     }
 }
