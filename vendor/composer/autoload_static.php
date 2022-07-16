@@ -39,6 +39,7 @@ class ComposerStaticInit1071a17390cb08b0b753714ddd3a3455
             'Symfony\\Component\\EventDispatcher\\' => 34,
             'Symfony\\Component\\ErrorHandler\\' => 31,
             'Symfony\\Component\\DependencyInjection\\' => 38,
+            'Symfony\\Component\\Debug\\' => 24,
             'Symfony\\Component\\Config\\' => 25,
             'SymfonyApiMapper\\Tests\\' => 23,
             'SymfonyApiMapper\\' => 17,
@@ -50,6 +51,10 @@ class ComposerStaticInit1071a17390cb08b0b753714ddd3a3455
             'Psr\\Container\\' => 14,
             'Prophecy\\' => 9,
             'PhpParser\\' => 10,
+        ),
+        'M' => 
+        array (
+            'MyCLabs\\Enum\\' => 13,
         ),
         'D' => 
         array (
@@ -121,6 +126,10 @@ class ComposerStaticInit1071a17390cb08b0b753714ddd3a3455
         array (
             0 => __DIR__ . '/..' . '/symfony/dependency-injection',
         ),
+        'Symfony\\Component\\Debug\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/debug',
+        ),
         'Symfony\\Component\\Config\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/config',
@@ -152,6 +161,10 @@ class ComposerStaticInit1071a17390cb08b0b753714ddd3a3455
         'PhpParser\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
+        ),
+        'MyCLabs\\Enum\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/myclabs/php-enum/src',
         ),
         'Doctrine\\Instantiator\\' => 
         array (

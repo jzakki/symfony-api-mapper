@@ -45,6 +45,37 @@ class PropertyMap implements IteratorAggregate, JsonSerializable
         return $this->map[$key];
     }
 
+
+    /** 
+     * @var PropertyMap
+     * @return void
+     */
+    public function merge(self $other): void
+    {
+        /** @var Property $property */
+        foreach ($other as $property) {
+            if (! $this->hasProperty($property->getName())) {
+                $this->addProperty($property);
+                continue;
+            }
+
+            if ($property == $this->getProperty($property->getName())) {
+                continue;
+            }
+
+            $current = $this->getProperty($property->getName());
+            $builder = $current->asBuilder();
+
+            $builder->setIsNullable($current->isNullable() || $property->isNullable());
+            foreach ($property->getTypes() as $propertyType) {
+                $builder->addType($propertyType->getType(), $propertyType->isArray());
+            }
+
+            $this->addProperty($builder->build());
+        }
+        $this->iterator = null;
+    }
+
     /** @return \ArrayIterator */
     public function getIterator(): \ArrayIterator
     {

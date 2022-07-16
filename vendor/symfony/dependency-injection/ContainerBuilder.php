@@ -39,6 +39,7 @@ use Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceExce
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\DependencyInjection\LazyProxy\Instantiator\InstantiatorInterface;
+use Symfony\Component\DependencyInjection\LazyProxy\Instantiator\LazyServiceInstantiator;
 use Symfony\Component\DependencyInjection\LazyProxy\Instantiator\RealServiceInstantiator;
 use Symfony\Component\DependencyInjection\ParameterBag\EnvPlaceholderParameterBag;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
@@ -86,7 +87,7 @@ class ContainerBuilder extends Container implements TaggedContainerInterface
 
     private Compiler $compiler;
     private bool $trackResources;
-    private ?InstantiatorInterface $proxyInstantiator = null;
+    private InstantiatorInterface $proxyInstantiator;
     private ExpressionLanguage $expressionLanguage;
 
     /**
@@ -994,10 +995,14 @@ class ContainerBuilder extends Container implements TaggedContainerInterface
             trigger_deprecation($deprecation['package'], $deprecation['version'], $deprecation['message']);
         }
 
-        if (true === $tryProxy && $definition->isLazy() && !$tryProxy = !($proxy = $this->proxyInstantiator) || $proxy instanceof RealServiceInstantiator) {
+        $parameterBag = $this->getParameterBag();
+
+        if (true === $tryProxy && $definition->isLazy() && !$tryProxy = !($proxy = $this->proxyInstantiator ??= new LazyServiceInstantiator()) || $proxy instanceof RealServiceInstantiator) {
             $proxy = $proxy->instantiateProxy(
                 $this,
-                $definition,
+                (clone $definition)
+                    ->setClass($parameterBag->resolveValue($definition->getClass()))
+                    ->setTags(($definition->hasTag('proxy') ? ['proxy' => $parameterBag->resolveValue($definition->getTag('proxy'))] : []) + $definition->getTags()),
                 $id, function ($proxy = false) use ($definition, &$inlineServices, $id) {
                     return $this->createService($definition, $inlineServices, true, $id, $proxy);
                 }
@@ -1006,8 +1011,6 @@ class ContainerBuilder extends Container implements TaggedContainerInterface
 
             return $proxy;
         }
-
-        $parameterBag = $this->getParameterBag();
 
         if (null !== $definition->getFile()) {
             require_once $parameterBag->resolveValue($definition->getFile());
@@ -1037,12 +1040,8 @@ class ContainerBuilder extends Container implements TaggedContainerInterface
         if (null !== $factory) {
             $service = $factory(...$arguments);
 
-            if (\is_object($tryProxy)) {
-                if (\get_class($service) !== $definition->getClass()) {
-                    throw new LogicException(sprintf('Lazy service of type "%s" cannot be hydrated because its factory returned an unexpected instance of "%s". Try adding the "proxy" tag to the corresponding service definition with attribute "interface" set to "%1$s".', $definition->getClass(), get_debug_type($service)));
-                }
-
-                $tryProxy = Hydrator::hydrate($tryProxy, (array) $service);
+            if (\is_object($tryProxy) && \get_class($service) !== $parameterBag->resolveValue($definition->getClass())) {
+                throw new LogicException(sprintf('Lazy service of type "%s" cannot be hydrated because its factory returned an unexpected instance of "%s". Try adding the "proxy" tag to the corresponding service definition with attribute "interface" set to "%1$s".', $definition->getClass(), get_debug_type($service)));
             }
 
             if (!$definition->isDeprecated() && \is_array($factory) && \is_string($factory[0])) {
@@ -1112,6 +1111,10 @@ class ContainerBuilder extends Container implements TaggedContainerInterface
             }
 
             $callable($service);
+        }
+
+        if (\is_object($tryProxy) && $tryProxy !== $service) {
+            return Hydrator::hydrate($tryProxy, (array) $service);
         }
 
         return $service;

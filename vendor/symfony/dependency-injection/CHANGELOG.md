@@ -4,8 +4,10 @@ CHANGELOG
 6.2
 ---
 
+ * Use lazy-loading ghost object proxies out of the box
  * Add argument `&$asGhostObject` to LazyProxy's `DumperInterface` to allow using ghost objects for lazy loading services
  * Add `enum` env var processor
+ * Add `shuffle` env var processor
 
 6.1
 ---

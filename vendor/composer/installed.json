@@ -137,6 +137,69 @@
             "install-path": "../myclabs/deep-copy"
         },
         {
+            "name": "myclabs/php-enum",
+            "version": "1.8.3",
+            "version_normalized": "1.8.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/myclabs/php-enum.git",
+                "reference": "b942d263c641ddb5190929ff840c68f78713e937"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/myclabs/php-enum/zipball/b942d263c641ddb5190929ff840c68f78713e937",
+                "reference": "b942d263c641ddb5190929ff840c68f78713e937",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.3 || ^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5",
+                "squizlabs/php_codesniffer": "1.*",
+                "vimeo/psalm": "^4.6.2"
+            },
+            "time": "2021-07-05T08:18:36+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "MyCLabs\\Enum\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP Enum contributors",
+                    "homepage": "https://github.com/myclabs/php-enum/graphs/contributors"
+                }
+            ],
+            "description": "PHP Enum implementation",
+            "homepage": "http://github.com/myclabs/php-enum",
+            "keywords": [
+                "enum"
+            ],
+            "support": {
+                "issues": "https://github.com/myclabs/php-enum/issues",
+                "source": "https://github.com/myclabs/php-enum/tree/1.8.3"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/mnapoli",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/myclabs/php-enum",
+                    "type": "tidelift"
+                }
+            ],
+            "install-path": "../myclabs/php-enum"
+        },
+        {
             "name": "nikic/php-parser",
             "version": "4.x-dev",
             "version_normalized": "4.9999999.9999999.9999999-dev",
@@ -569,12 +632,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "754c19e25f2a479d975a246677ea5a8551c6956b"
+                "reference": "53e40236c527413c55828cd7edf2a1188b322ee2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/754c19e25f2a479d975a246677ea5a8551c6956b",
-                "reference": "754c19e25f2a479d975a246677ea5a8551c6956b",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/53e40236c527413c55828cd7edf2a1188b322ee2",
+                "reference": "53e40236c527413c55828cd7edf2a1188b322ee2",
                 "shasum": ""
             },
             "require": {
@@ -599,7 +662,7 @@
                 "ext-pcov": "*",
                 "ext-xdebug": "*"
             },
-            "time": "2022-07-08T05:55:54+00:00",
+            "time": "2022-07-13T13:11:30+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -902,12 +965,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "59819644b61807a56a97313b396d604dd771c11f"
+                "reference": "1d2cec6338d9d50f96c3021d1a1072de4dc4be39"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/59819644b61807a56a97313b396d604dd771c11f",
-                "reference": "59819644b61807a56a97313b396d604dd771c11f",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/1d2cec6338d9d50f96c3021d1a1072de4dc4be39",
+                "reference": "1d2cec6338d9d50f96c3021d1a1072de4dc4be39",
                 "shasum": ""
             },
             "require": {
@@ -947,7 +1010,7 @@
                 "ext-soap": "*",
                 "ext-xdebug": "*"
             },
-            "time": "2022-07-02T06:45:28+00:00",
+            "time": "2022-07-14T05:24:10+00:00",
             "bin": [
                 "phpunit"
             ],
@@ -2260,18 +2323,91 @@
             "install-path": "../symfony/config"
         },
         {
+            "name": "symfony/debug",
+            "version": "4.4.x-dev",
+            "version_normalized": "4.4.9999999.9999999-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/debug.git",
+                "reference": "77603bad557b467fe086d2098225fa1e88debffe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/77603bad557b467fe086d2098225fa1e88debffe",
+                "reference": "77603bad557b467fe086d2098225fa1e88debffe",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.3",
+                "psr/log": "^1|^2|^3"
+            },
+            "conflict": {
+                "symfony/http-kernel": "<3.4"
+            },
+            "require-dev": {
+                "symfony/http-kernel": "^3.4|^4.0|^5.0"
+            },
+            "time": "2022-06-27T13:16:42+00:00",
+            "default-branch": true,
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Debug\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Provides tools to ease debugging PHP code",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/debug/tree/4.4"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "abandoned": "symfony/error-handler",
+            "install-path": "../symfony/debug"
+        },
+        {
             "name": "symfony/dependency-injection",
             "version": "6.2.x-dev",
             "version_normalized": "6.2.9999999.9999999-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "7fcfec1e33d89abb58b04833628e0accebb40d4d"
+                "reference": "28c3300482a0416dfd319c7755f0657271a99735"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/7fcfec1e33d89abb58b04833628e0accebb40d4d",
-                "reference": "7fcfec1e33d89abb58b04833628e0accebb40d4d",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/28c3300482a0416dfd319c7755f0657271a99735",
+                "reference": "28c3300482a0416dfd319c7755f0657271a99735",
                 "shasum": ""
             },
             "require": {
@@ -2304,7 +2440,7 @@
                 "symfony/proxy-manager-bridge": "Generate service proxies to lazy load them",
                 "symfony/yaml": ""
             },
-            "time": "2022-07-03T14:31:53+00:00",
+            "time": "2022-07-13T14:52:16+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -2737,12 +2873,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "cb3a0513773363afa0a05e34855a16ff7bdd461f"
+                "reference": "1d1e5042a919260f56e10571e1b875f432c6fdeb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/cb3a0513773363afa0a05e34855a16ff7bdd461f",
-                "reference": "cb3a0513773363afa0a05e34855a16ff7bdd461f",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/1d1e5042a919260f56e10571e1b875f432c6fdeb",
+                "reference": "1d1e5042a919260f56e10571e1b875f432c6fdeb",
                 "shasum": ""
             },
             "require": {
@@ -2759,7 +2895,7 @@
             "suggest": {
                 "symfony/mime": "To use the file extension guesser"
             },
-            "time": "2022-07-07T07:37:45+00:00",
+            "time": "2022-07-11T16:07:59+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -2812,12 +2948,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-kernel.git",
-                "reference": "7b67334f1022f383322332f8b2123ae7cdcc22d6"
+                "reference": "4a8426edb39c24d3e947b85009a36c14dd0935f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/7b67334f1022f383322332f8b2123ae7cdcc22d6",
-                "reference": "7b67334f1022f383322332f8b2123ae7cdcc22d6",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/4a8426edb39c24d3e947b85009a36c14dd0935f4",
+                "reference": "4a8426edb39c24d3e947b85009a36c14dd0935f4",
                 "shasum": ""
             },
             "require": {
@@ -2833,7 +2969,7 @@
                 "symfony/cache": "<5.4",
                 "symfony/config": "<6.1",
                 "symfony/console": "<5.4",
-                "symfony/dependency-injection": "<6.1",
+                "symfony/dependency-injection": "<6.2",
                 "symfony/doctrine-bridge": "<5.4",
                 "symfony/form": "<5.4",
                 "symfony/http-client": "<5.4",
@@ -2853,7 +2989,7 @@
                 "symfony/config": "^6.1",
                 "symfony/console": "^5.4|^6.0",
                 "symfony/css-selector": "^5.4|^6.0",
-                "symfony/dependency-injection": "^6.1",
+                "symfony/dependency-injection": "^6.2",
                 "symfony/dom-crawler": "^5.4|^6.0",
                 "symfony/expression-language": "^5.4|^6.0",
                 "symfony/finder": "^5.4|^6.0",
@@ -2872,7 +3008,7 @@
                 "symfony/console": "",
                 "symfony/dependency-injection": ""
             },
-            "time": "2022-07-07T09:50:37+00:00",
+            "time": "2022-07-12T15:56:35+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -3278,12 +3414,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-exporter.git",
-                "reference": "34b0ca0759c386bcd52d551b381a029e0d45bdb5"
+                "reference": "acd508c801dec400e380ce0d7acf0110c0824951"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-exporter/zipball/34b0ca0759c386bcd52d551b381a029e0d45bdb5",
-                "reference": "34b0ca0759c386bcd52d551b381a029e0d45bdb5",
+                "url": "https://api.github.com/repos/symfony/var-exporter/zipball/acd508c801dec400e380ce0d7acf0110c0824951",
+                "reference": "acd508c801dec400e380ce0d7acf0110c0824951",
                 "shasum": ""
             },
             "require": {
@@ -3292,7 +3428,7 @@
             "require-dev": {
                 "symfony/var-dumper": "^5.4|^6.0"
             },
-            "time": "2022-07-07T07:37:45+00:00",
+            "time": "2022-07-14T07:05:40+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -3575,6 +3711,7 @@
         "sebastian/type",
         "sebastian/version",
         "symfony/config",
+        "symfony/debug",
         "symfony/dependency-injection",
         "symfony/deprecation-contracts",
         "symfony/error-handler",
