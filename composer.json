@@ -1,5 +1,5 @@
 {
-    "name": "jzakki/jmapper",
+    "name": "jzakki/symfony-api-mapper",
     "description": "This is a package for mapping responded objects from third-party APIs to symfony corresponding entity objects.",
     "type": "symfony-bundle",
     "license": "MIT",

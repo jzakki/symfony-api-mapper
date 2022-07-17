@@ -1,7 +1,7 @@
 <?php
 
-use SymfonyApiMapper\Entity\User;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use SymfonyApiMapper\Entity\User;
 use Symfony\Component\ErrorHandler\Debug;
 use SymfonyApiMapper\DependencyInjection\MapperExtention;
 

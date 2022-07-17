@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ff3aaa72010bf5de73dd75fb0cae5a85",
+    "content-hash": "6c455806b7e3abf8d715927a8547878c",
     "packages": [
         {
             "name": "myclabs/php-enum",
@@ -609,12 +609,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "53e40236c527413c55828cd7edf2a1188b322ee2"
+                "reference": "f6267f4aaab6cc1c5457ea7be2984828aa93daeb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/53e40236c527413c55828cd7edf2a1188b322ee2",
-                "reference": "53e40236c527413c55828cd7edf2a1188b322ee2",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/f6267f4aaab6cc1c5457ea7be2984828aa93daeb",
+                "reference": "f6267f4aaab6cc1c5457ea7be2984828aa93daeb",
                 "shasum": ""
             },
             "require": {
@@ -678,7 +678,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-07-13T13:11:30+00:00"
+            "time": "2022-07-16T05:44:48+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -927,12 +927,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "1d2cec6338d9d50f96c3021d1a1072de4dc4be39"
+                "reference": "542bc07713d1823078e864a1742ae34d4be8b335"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/1d2cec6338d9d50f96c3021d1a1072de4dc4be39",
-                "reference": "1d2cec6338d9d50f96c3021d1a1072de4dc4be39",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/542bc07713d1823078e864a1742ae34d4be8b335",
+                "reference": "542bc07713d1823078e864a1742ae34d4be8b335",
                 "shasum": ""
             },
             "require": {
@@ -1021,7 +1021,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-07-14T05:24:10+00:00"
+            "time": "2022-07-16T05:48:25+00:00"
         },
         {
             "name": "psr/container",
@@ -2823,12 +2823,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-kernel.git",
-                "reference": "4a8426edb39c24d3e947b85009a36c14dd0935f4"
+                "reference": "a0d887ddecd81d4e47bf15442cd610ba090241ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/4a8426edb39c24d3e947b85009a36c14dd0935f4",
-                "reference": "4a8426edb39c24d3e947b85009a36c14dd0935f4",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/a0d887ddecd81d4e47bf15442cd610ba090241ec",
+                "reference": "a0d887ddecd81d4e47bf15442cd610ba090241ec",
                 "shasum": ""
             },
             "require": {
@@ -2925,7 +2925,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-07-12T15:56:35+00:00"
+            "time": "2022-07-14T17:52:38+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
