@@ -13,7 +13,7 @@ use SymfonyApiMapper\Exception\TypeException;
 use SymfonyApiMapper\Helpers\IScalarCaster;
 use SymfonyApiMapper\Helpers\ScalarCaster;
 
-abstract class AsbtractPropertyMapper
+abstract class AbstractPropertyMapper
 {
 
     /** @var FactoryRegistry */
