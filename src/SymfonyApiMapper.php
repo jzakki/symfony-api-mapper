@@ -7,14 +7,6 @@ namespace SymfonyApiMapper;
 class SymfonyApiMapper
 {
 
-    private string $mapDir;
-
-    /** @param string $mapDir */
-    public function __construct(String $mapDir)
-    {
-        $this->$mapDir = $mapDir;         
-    }
-
     /** @return MapperInterface */
     public function createJsonMapper(): MapperInterface
     {

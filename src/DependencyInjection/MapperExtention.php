@@ -20,10 +20,5 @@ class MapperExtention extends Extension
         // Load the bundle's service declarations 
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../../config'));
         $loader->load('services.yaml');
-
-        // $configuration = new Configuration();
-        // $options = $this->proccess($configuration, $configs);
-
-        // $container->setParameter('mapper.map', $options['map']);
     }
 }

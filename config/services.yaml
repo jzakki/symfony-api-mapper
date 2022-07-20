@@ -1,11 +1,9 @@
 parameters:
-    app.map_dir: 'map.yaml'
+    # nothing to declare
 
 services:
     SymfonyApiMapper\SymfonyApiMapper:
         autowire: true
-        arguments:
-            $mapDir: '%app.map_dir%'
 
     app.mapper:
         alias: SymfonyApiMapper\SymfonyApiMapper
