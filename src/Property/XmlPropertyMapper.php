@@ -9,7 +9,7 @@ use SymfonyApiMapper\MapperInterface;
 use SymfonyApiMapper\Helpers\DocBlockAnnotation;
 use SymfonyApiMapper\Helpers\YamlMap;
 
-class XmlPropertyMapper extends AbstractPropertyMapper implements PropertyMapperInterface 
+class XmlPropertyMapper extends AbstractPropertyMapper implements PropertyMapperInterface
 {
     
     public function __invoke(
