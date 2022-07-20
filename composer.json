@@ -23,11 +23,11 @@
         "myclabs/php-enum": "^1.7"
     },
     "require-dev": {
-        "symfony/dependency-injection": "6.2.x-dev",
+        "phpunit/phpunit": "^9.5",
+        "symfony/error-handler": "6.2.x-dev",
+        "symfony/yaml": "6.2.x-dev",
         "symfony/config": "6.2.x-dev",
         "symfony/http-kernel": "6.2.x-dev",
-        "symfony/yaml": "6.2.x-dev",
-        "phpunit/phpunit": "^9.5",
-        "symfony/debug": "4.4.x-dev"
+        "symfony/dependency-injection": "6.2.x-dev"
     }
 }

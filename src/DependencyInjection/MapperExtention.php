@@ -10,20 +10,20 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
-class MapperExtention extends Extension 
+class MapperExtention extends Extension
 {
     /**
      * @return void
      */
     public function load(array $configs, ContainerBuilder $container)
     {
+        // Load the bundle's service declarations 
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../../config'));
-        
         $loader->load('services.yaml');
 
-        $configuration = new Configuration();
-        $config = $this->processConfiguration($configuration, $configs);
+        // $configuration = new Configuration();
+        // $options = $this->proccess($configuration, $configs);
 
-        $container->setParameter('mapper.map', $config['map']);
+        // $container->setParameter('mapper.map', $options['map']);
     }
 }

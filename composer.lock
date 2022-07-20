@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6c455806b7e3abf8d715927a8547878c",
+    "content-hash": "d91b7cb23ef1c6e805ccd1d25d627f20",
     "packages": [
         {
             "name": "myclabs/php-enum",
@@ -1029,12 +1029,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/container.git",
-                "reference": "c71ecc56dfe541dbd90c5360474fbc405f8d5963"
+                "reference": "90db7b9ac2a2c5b849fcb69dde58f3ae182c68f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/container/zipball/c71ecc56dfe541dbd90c5360474fbc405f8d5963",
-                "reference": "c71ecc56dfe541dbd90c5360474fbc405f8d5963",
+                "url": "https://api.github.com/repos/php-fig/container/zipball/90db7b9ac2a2c5b849fcb69dde58f3ae182c68f5",
+                "reference": "90db7b9ac2a2c5b849fcb69dde58f3ae182c68f5",
                 "shasum": ""
             },
             "require": {
@@ -1073,9 +1073,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-fig/container/issues",
-                "source": "https://github.com/php-fig/container/tree/2.0.2"
+                "source": "https://github.com/php-fig/container/tree/master"
             },
-            "time": "2021-11-05T16:47:00+00:00"
+            "time": "2022-07-19T17:36:59+00:00"
         },
         {
             "name": "psr/event-dispatcher",
@@ -2223,87 +2223,17 @@
             "time": "2022-06-27T17:24:16+00:00"
         },
         {
-            "name": "symfony/debug",
-            "version": "4.4.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/debug.git",
-                "reference": "77603bad557b467fe086d2098225fa1e88debffe"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/77603bad557b467fe086d2098225fa1e88debffe",
-                "reference": "77603bad557b467fe086d2098225fa1e88debffe",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1.3",
-                "psr/log": "^1|^2|^3"
-            },
-            "conflict": {
-                "symfony/http-kernel": "<3.4"
-            },
-            "require-dev": {
-                "symfony/http-kernel": "^3.4|^4.0|^5.0"
-            },
-            "default-branch": true,
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Debug\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Provides tools to ease debugging PHP code",
-            "homepage": "https://symfony.com",
-            "support": {
-                "source": "https://github.com/symfony/debug/tree/4.4"
-            },
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
-            "abandoned": "symfony/error-handler",
-            "time": "2022-06-27T13:16:42+00:00"
-        },
-        {
             "name": "symfony/dependency-injection",
             "version": "6.2.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "28c3300482a0416dfd319c7755f0657271a99735"
+                "reference": "05c114996f4281a54c622e474418655431c801a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/28c3300482a0416dfd319c7755f0657271a99735",
-                "reference": "28c3300482a0416dfd319c7755f0657271a99735",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/05c114996f4281a54c622e474418655431c801a9",
+                "reference": "05c114996f4281a54c622e474418655431c801a9",
                 "shasum": ""
             },
             "require": {
@@ -2378,7 +2308,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-07-13T14:52:16+00:00"
+            "time": "2022-07-19T12:50:43+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -2751,12 +2681,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "1d1e5042a919260f56e10571e1b875f432c6fdeb"
+                "reference": "7bfa4255eac8957f122cdbf2278769a8de874ffd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/1d1e5042a919260f56e10571e1b875f432c6fdeb",
-                "reference": "1d1e5042a919260f56e10571e1b875f432c6fdeb",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/7bfa4255eac8957f122cdbf2278769a8de874ffd",
+                "reference": "7bfa4255eac8957f122cdbf2278769a8de874ffd",
                 "shasum": ""
             },
             "require": {
@@ -2815,7 +2745,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-07-11T16:07:59+00:00"
+            "time": "2022-07-18T14:20:40+00:00"
         },
         {
             "name": "symfony/http-kernel",
@@ -3186,12 +3116,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "e81fb3ec08f9bace3ec9757b55444c0cead8402e"
+                "reference": "4386618871281fdca10c9f8b826a6c0432e7ccc6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/e81fb3ec08f9bace3ec9757b55444c0cead8402e",
-                "reference": "e81fb3ec08f9bace3ec9757b55444c0cead8402e",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/4386618871281fdca10c9f8b826a6c0432e7ccc6",
+                "reference": "4386618871281fdca10c9f8b826a6c0432e7ccc6",
                 "shasum": ""
             },
             "require": {
@@ -3266,7 +3196,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-06-27T17:24:16+00:00"
+            "time": "2022-07-19T12:50:17+00:00"
         },
         {
             "name": "symfony/var-exporter",
@@ -3526,11 +3456,11 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "symfony/dependency-injection": 20,
+        "symfony/error-handler": 20,
+        "symfony/yaml": 20,
         "symfony/config": 20,
         "symfony/http-kernel": 20,
-        "symfony/yaml": 20,
-        "symfony/debug": 20
+        "symfony/dependency-injection": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
