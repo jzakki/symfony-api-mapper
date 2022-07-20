@@ -9,7 +9,7 @@ use SymfonyApiMapper\MapperInterface;
 use SymfonyApiMapper\Helpers\DocBlockAnnotation;
 use SymfonyApiMapper\Helpers\YamlMap;
 
-class JsonPropertyMapper extends AsbtractPropertyMapper implements PropertyMapperInterface
+class JsonPropertyMapper extends AbstractPropertyMapper implements PropertyMapperInterface
 {
     
     public function __invoke(
