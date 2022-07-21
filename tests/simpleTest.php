@@ -3,13 +3,13 @@
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use SymfonyApiMapper\Entity\User;
 use Symfony\Component\ErrorHandler\Debug;
-use SymfonyApiMapper\DependencyInjection\MapperExtention;
+use SymfonyApiMapper\DependencyInjection\SymfonyApiMapperExtension;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 Debug::enable();
 
 $container = new ContainerBuilder();
-$extention = new MapperExtention();
+$extention = new SymfonyApiMapperExtension();
 $extention->load(array(), $container);
 $container->compile();
 

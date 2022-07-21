@@ -6,7 +6,7 @@ namespace SymfonyApiMapper;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class MapperBundle extends Bundle
+class SymfonyApiMapperBundle extends Bundle
 {
 
 }
