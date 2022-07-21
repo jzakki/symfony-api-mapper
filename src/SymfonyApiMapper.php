@@ -4,15 +4,26 @@ declare(strict_types=1);
 
 namespace SymfonyApiMapper;
 
+use SymfonyApiMapper\Helpers\YamlMap;
+
 class SymfonyApiMapper
 {
+    /**
+     * @var YamlMap
+     */
+    private $yamlMap;
+
+    public function __construct(YamlMap $yamlMap)
+    {
+        $this->yamlMap = $yamlMap;
+    }
 
     /** @return MapperInterface */
     public function createJsonMapper(): MapperInterface
     {
         $jsonMapperFactory = new JsonMapperFactory();
 
-        return $jsonMapperFactory->create();
+        return $jsonMapperFactory->create($this->yamlMap);
     }
 
     /** @return MapperInterface */
@@ -20,7 +31,7 @@ class SymfonyApiMapper
     {
         $xmlMapperFactory = new XmlMapperFactory();
 
-        return $xmlMapperFactory->create();
+        return $xmlMapperFactory->create($this->yamlMap);
     }
 
 }

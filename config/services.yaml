@@ -2,9 +2,13 @@ parameters:
     # nothing to declare
 
 services:
+    SymfonyApiMapper\Helpers\YamlMap:
+        class: 'SymfonyApiMapper\Helpers\YamlMap'
+        arguments: ['']
+
     SymfonyApiMapper\SymfonyApiMapper:
         autowire: true
 
     app.mapper:
         alias: SymfonyApiMapper\SymfonyApiMapper
-        public: true 
+        public: true

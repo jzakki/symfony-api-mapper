@@ -16,11 +16,10 @@ class DocBlockAnnotation
     
     private const DOC_BLOCK_REGEX = '/@(?P<name>[A-Za-z_-]+)[ \t]+(?P<value>[\w\[\]\\\\|]*).*$/m';
 
-    public function buildPropertyMapObjectFromDocBlockAnnotations(ObjectWrapper $object): PropertyMap
+    public function buildPropertyMapObjectFromDocBlockAnnotations(ObjectWrapper $object, YamlMap $yamlMap): PropertyMap
     {
         $properties = $object->getReflectedObject()->getProperties();
         $propertyMap = new PropertyMap();
-        $yamlMap = new YamlMap();
         
         foreach($properties as $property){
 

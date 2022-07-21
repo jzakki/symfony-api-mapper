@@ -19,10 +19,10 @@ class XmlPropertyMapper extends AbstractPropertyMapper implements PropertyMapper
         MapperInterface $xmlMapper): void
     {
 
+        $yamlMap = $xmlMapper->getYamlMap();
         $docBlockAnnotation = new DocBlockAnnotation();
-        $propertyMap->merge($docBlockAnnotation->buildPropertyMapObjectFromDocBlockAnnotations($object));
+        $propertyMap->merge($docBlockAnnotation->buildPropertyMapObjectFromDocBlockAnnotations($object, $yamlMap));
         $values = (array) $xml;
-        $yamlMap = new YamlMap();
 
         foreach($values as $key => $value){
             $propertyName = $yamlMap->getApiEqualsToKey($object->getName(), $key);

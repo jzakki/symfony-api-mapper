@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SymfonyApiMapper;
 
+use SymfonyApiMapper\Helpers\YamlMap;
+
 class XmlMapperFactory implements MapperFactory
 {
     /** @var XmlMapperBuilder */
@@ -14,9 +16,9 @@ class XmlMapperFactory implements MapperFactory
         $this->builder = $builder ?? XmlMapperBuilder::new();
     }
 
-    public function create(): MapperInterface
+    public function create(YamlMap $yamlMap): MapperInterface
     {
         $builder = clone ($this->builder);
-        return $builder->build();
+        return $builder->build($yamlMap);
     }
 }

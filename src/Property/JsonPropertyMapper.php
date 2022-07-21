@@ -18,10 +18,11 @@ class JsonPropertyMapper extends AbstractPropertyMapper implements PropertyMappe
         PropertyMap $propertyMap,
         MapperInterface $jsonMapper): void
     {
+
+        $yamlMap = $jsonMapper->getYamlMap();
         $docBlockAnnotation = new DocBlockAnnotation();
-        $propertyMap->merge($docBlockAnnotation->buildPropertyMapObjectFromDocBlockAnnotations($object));
+        $propertyMap->merge($docBlockAnnotation->buildPropertyMapObjectFromDocBlockAnnotations($object, $yamlMap));
         $values = (array) $json;
-        $yamlMap = new YamlMap();
 
         foreach($values as $key => $value){
             $propertyName = $yamlMap->getApiEqualsToKey($object->getName(), $key);

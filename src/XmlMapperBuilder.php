@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SymfonyApiMapper;
 
+use SymfonyApiMapper\Helpers\YamlMap;
 use SymfonyApiMapper\XmlMapper;
 use SymfonyApiMapper\MapperInterface;
 use SymfonyApiMapper\Property\XmlPropertyMapper;
@@ -28,11 +29,14 @@ class XmlMapperBuilder implements MapperBuilder
         return new XmlMapperBuilder();
     }
 
-    /** @return MapperInterface */
-    public function build(): MapperInterface
+    /** 
+     * @param YamlMap
+     * @return MapperInterface */
+    public function build(YamlMap $yamlMap): MapperInterface
     {
         $mapper = new $this->xmlMappper();
         $mapper->setPropertyMapper($this->propertyMapper);
+        $mapper->setYamlMap($yamlMap);
 
         return $mapper;
     }

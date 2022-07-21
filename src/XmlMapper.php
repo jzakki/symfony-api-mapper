@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SymfonyApiMapper;
 
 use SymfonyApiMapper\Exception\TypeException;
+use SymfonyApiMapper\Helpers\YamlMap;
 use SymfonyApiMapper\Property\PropertyMap;
 use SymfonyApiMapper\Wrapper\ObjectWrapper;
 
@@ -13,6 +14,9 @@ class XmlMapper implements MapperInterface
 
     /** @var callable|null */
     private $propertyMapper;
+
+    /** @var YamlMap */
+    private $yamlMap;
 
     /** @param Callable|null $propertyMapper */
     public function __construct(callable $propertyMapper = null)
@@ -27,6 +31,25 @@ class XmlMapper implements MapperInterface
     public function setPropertyMapper(callable $propertyMapper): MapperInterface 
     {
         $this->propertyMapper = $propertyMapper;
+
+        return $this;
+    }
+
+    /**
+     * @return YamlMap
+     */
+    public function getYamlMap(): YamlMap 
+    {
+        return $this->yamlMap;
+    }
+
+    /**
+     * @param YamlMap $yamlMap
+     * @return MapperInterface 
+     */
+    public function setYamlMap(YamlMap $yamlMap): MapperInterface 
+    {
+        $this->yamlMap = $yamlMap;
 
         return $this;
     }

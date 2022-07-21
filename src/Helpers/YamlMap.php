@@ -9,13 +9,24 @@ use Symfony\Component\Yaml\Yaml;
 class YamlMap {
 
     /**
+     * @var string
+     */
+    private $mapDir;
+
+    /**
      * @var mixed
      */
     private $map;
 
-    public function __construct()
+    public function __construct(string $mapDir)
     {
-        $this->map = Yaml::parseFile(dirname(__DIR__,2).'/config/map.yaml');
+
+        $this->mapDir = $mapDir;
+
+        if (!file_exists($this->mapDir)){
+            throw new \RuntimeException("There is no map directory file to read");
+        }
+        $this->map = Yaml::parseFile($this->mapDir);
     }
 
     /**
