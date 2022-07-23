@@ -6,9 +6,9 @@ namespace SymfonyApiMapper\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use SymfonyApiMapper\JsonMapper;
-use SymfonyApiMapper\JsonMapperBuilder;
+use SymfonyApiMapper\Builders\JsonMapperBuilder;
 use SymfonyApiMapper\XmlMapper;
-use SymfonyApiMapper\XmlMapperBuilder;
+use SymfonyApiMapper\Builders\XmlMapperBuilder;
 
 class MapperBuilderTest extends TestCase
 {

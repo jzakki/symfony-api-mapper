@@ -4,21 +4,22 @@ declare(strict_types=1);
 
 namespace SymfonyApiMapper\Property;
 
+use SymfonyApiMapper\Factories\MapperInterface;
 use SymfonyApiMapper\Wrapper\ObjectWrapper;
-use SymfonyApiMapper\MapperInterface;
 use SymfonyApiMapper\Helpers\DocBlockAnnotation;
-use SymfonyApiMapper\Helpers\YamlMap;
 
-class JsonPropertyMapper extends AbstractPropertyMapper implements PropertyMapperInterface
+class JsonPropertyMapper extends AbstractPropertyMapper
 {
     
     public function __invoke(
-        \stdClass $json, 
+        \stdClass|string $json, 
         ObjectWrapper $object, 
         PropertyMap $propertyMap,
         MapperInterface $jsonMapper): void
     {
-
+        
+        $reflectedObject = $object->getReflectedObject();
+        $namespace = $reflectedObject->getNamespaceName();
         $yamlMap = $jsonMapper->getYamlMap();
         $docBlockAnnotation = new DocBlockAnnotation();
         $propertyMap->merge($docBlockAnnotation->buildPropertyMapObjectFromDocBlockAnnotations($object, $yamlMap));
@@ -40,7 +41,7 @@ class JsonPropertyMapper extends AbstractPropertyMapper implements PropertyMappe
                 continue;
             }
 
-            $value = $this->mapPropertyValue($jsonMapper, $property, $value);
+            $value = $this->mapPropertyValue($jsonMapper, $property, $value, $namespace);
             $this->setValue($object, $property, $value);
         }
         

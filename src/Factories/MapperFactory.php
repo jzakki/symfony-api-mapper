@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SymfonyApiMapper;
+namespace SymfonyApiMapper\Factories;
 
 use SymfonyApiMapper\Helpers\YamlMap;
 

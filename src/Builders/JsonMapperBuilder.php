@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace SymfonyApiMapper;
+namespace SymfonyApiMapper\Builders;
 
 use SymfonyApiMapper\Helpers\YamlMap;
-use SymfonyApiMapper\JsonMapper;
-use SymfonyApiMapper\MapperInterface;
+use SymfonyApiMapper\Factories\JsonMapper;
+use SymfonyApiMapper\Factories\MapperInterface;
 use SymfonyApiMapper\Property\JsonPropertyMapper;
 
 class JsonMapperBuilder implements MapperBuilder
@@ -32,7 +32,7 @@ class JsonMapperBuilder implements MapperBuilder
     /**
      * @param YamlMap 
      * @return MapperInterface */
-    public function build(YamlMap $yamlMap): MapperInterface
+    public function build(YamlMap $yamlMap = null): MapperInterface
     {
         $mapper = new $this->jsonMappper();
         $mapper->setPropertyMapper($this->propertyMapper);

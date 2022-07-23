@@ -6,10 +6,9 @@ namespace SymfonyApiMapper\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use SymfonyApiMapper\Entity\User;
-use SymfonyApiMapper\JsonMapper;
-use SymfonyApiMapper\JsonMapperFactory;
-use SymfonyApiMapper\XmlMapper;
-use SymfonyApiMapper\XmlMapperFactory;
+use SymfonyApiMapper\Factories\JsonMapper;
+use SymfonyApiMapper\Factories\JsonMapperFactory;
+use SymfonyApiMapper\Helpers\YamlMap;
 
 class MapTest extends TestCase
 {

@@ -20,8 +20,9 @@ $mapper = $container->get('app.mapper')->createXmlMapper();
 //$mapper = $container->get('app.mapper')->createJsonMapper();
 
 $object = new User();
-$json = '{"name": "John Doe"}';
-$xml = '<?xml version="1.0" encoding="UTF-8" ?><root><name>John Doe</name></root>';
+
+//$json = '{"name": {"last_name": "zaki", "first_name": "javad"}, "password": {"hash": "sdkjfhaksahskfja"}}';
+$xml = '<?xml version="1.0" encoding="UTF-8" ?><root><name>John Doe</name><password><hash>sdkjfhaksahskfja</hash></password></root>';
 $mapper->map($xml, $object);
 
 dd($object);

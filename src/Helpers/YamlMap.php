@@ -18,7 +18,7 @@ class YamlMap {
      */
     private $map;
 
-    public function __construct(string $mapDir)
+    public function __construct(string $mapDir = null)
     {
 
         $this->mapDir = $mapDir;

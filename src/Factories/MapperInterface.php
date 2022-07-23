@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SymfonyApiMapper;
+namespace SymfonyApiMapper\Factories;
 
 use SymfonyApiMapper\Helpers\YamlMap;
 
@@ -16,13 +16,13 @@ interface MapperInterface
     public function map($response, $object);
 
     /**
-     * @return YamlMap
+     * @param YamlMap $yamlMap
+     * @return MapperInterface
      */
-    public function getYamlMap():YamlMap;
+    public function setYamlMap(YamlMap $yamlMap): MapperInterface;
 
     /**
-     * @param YamlMap $yamlMap
      * @return YamlMap
      */
-    public function setYamlMap(YamlMap $yamlMap):MapperInterface;
+    public function getYamlMap(): YamlMap;
 }

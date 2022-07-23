@@ -6,43 +6,32 @@ namespace SymfonyApiMapper\Property;
 
 use SymfonyApiMapper\Enum\ScalarType;
 use SymfonyApiMapper\Wrapper\ObjectWrapper;
-use SymfonyApiMapper\MapperInterface;
 use SymfonyApiMapper\Enum\Visibility;
-use SymfonyApiMapper\Exception\ClassFactoryException;
 use SymfonyApiMapper\Exception\TypeException;
+use SymfonyApiMapper\Factories\MapperInterface;
 use SymfonyApiMapper\Helpers\IScalarCaster;
 use SymfonyApiMapper\Helpers\ScalarCaster;
 
 abstract class AbstractPropertyMapper
 {
 
-    /** @var FactoryRegistry */
-    private $classFactoryRegistry;
-    /** @var FactoryRegistry */
-    private $nonInstantiableTypeResolver;
     /** @var IScalarCaster */
     private $scalarCaster;
 
-    public function __construct(
-        FactoryRegistry $classFactoryRegistry = null,
-        FactoryRegistry $nonInstantiableTypeResolver = null,
-        IScalarCaster $scalarCaster = null)
+    public function __construct(IScalarCaster $scalarCaster = null)
     {
-        if ($classFactoryRegistry === null) {
-            $classFactoryRegistry = FactoryRegistry::withNativePhpClassesAdded();
-        }
-
-        if ($nonInstantiableTypeResolver === null) {
-            $nonInstantiableTypeResolver = new FactoryRegistry();
-        }
         if ($scalarCaster === null) {
             $scalarCaster = new ScalarCaster();
         }
-
-        $this->classFactoryRegistry = $classFactoryRegistry;
-        $this->nonInstantiableTypeResolver = $nonInstantiableTypeResolver;
         $this->scalarCaster = $scalarCaster;
     }
+
+    public abstract function __invoke(
+        \stdClass $response,
+        ObjectWrapper $object,
+        PropertyMap $propertyMap,
+        MapperInterface $mapperInterface
+    ): void;
 
     /**
      * @param ObjectWrapper $object
@@ -51,6 +40,7 @@ abstract class AbstractPropertyMapper
      */
     public function setValue(ObjectWrapper $object, Property $property, $value): void
     {
+
         if ($property->getVisibility()->equals(Visibility::PUBLIC())) {
             $object->getObject()->{$property->getName()} = $value;
             return;
@@ -81,8 +71,9 @@ abstract class AbstractPropertyMapper
      * @param mixed $value
      * @return mixed
      */
-    public function mapPropertyValue(MapperInterface $mapper, Property $property, $value)
+    public function mapPropertyValue(MapperInterface $mapper, Property $property, $value, $namespace)
     {
+
         // For union types, loop through and see if value is a match with the type
         if (\count($property->getTypes()) > 1) {
             foreach ($property->getTypes() as $type) {
@@ -95,17 +86,10 @@ abstract class AbstractPropertyMapper
                     $firstValue = \array_shift($copy);
 
                     /* Array of scalar values */
-                    if ($this->propertyTypeAndValueTypeAreScalarAndSameType($type, $firstValue)) {
+                    if ($this->sametypeAndValue($type, $firstValue)) {
                         $scalarType = new ScalarType($type->getType());
                         return \array_map(function ($v) use ($scalarType) {
                             return $this->scalarCaster->cast($scalarType, $v);
-                        }, $value);
-                    }
-
-                    // Array of registered class @todo how do you know it was the correct type?
-                    if ($this->classFactoryRegistry->hasFactory($type->getType())) {
-                        return \array_map(function ($v) use ($type) {
-                            return $this->classFactoryRegistry->create($type->getType(), $v);
                         }, $value);
                     }
 
@@ -126,13 +110,8 @@ abstract class AbstractPropertyMapper
                 }
 
                 // Single scalar value
-                if ($this->propertyTypeAndValueTypeAreScalarAndSameType($type, $value)) {
+                if ($this->sametypeAndValue($type, $value)) {
                     return $this->scalarCaster->cast(new ScalarType($type->getType()), $value);
-                }
-
-                // Single registered class @todo how do you know it was the correct type?
-                if ($this->classFactoryRegistry->hasFactory($type->getType())) {
-                    return $this->classFactoryRegistry->create($type->getType(), $value);
                 }
 
                 // Single existing class @todo how do you know it was the correct type?
@@ -158,28 +137,12 @@ abstract class AbstractPropertyMapper
             return $this->mapToScalarValue($type->getType(), $value);
         }
 
-        if (PHP_VERSION_ID >= 80100 && enum_exists($type->getType())) {
-            if ($type->isArray()) {
-                return $this->mapToArrayOfEnum($type->getType(), $value);
-            }
-            return $this->mapToEnum($type->getType(), $value);
-        }
-
-        if ($this->classFactoryRegistry->hasFactory($type->getType())) {
-            if ($type->isArray()) {
-                return \array_map(function ($v) use ($type) {
-                    return $this->classFactoryRegistry->create($type->getType(), $v);
-                }, $value);
-            }
-            return $this->classFactoryRegistry->create($type->getType(), $value);
-        }
-
-        if ($type->isArray() && (class_exists($type->getType()) || interface_exists($type->getType()))) {
+        if ($type->isArray() && class_exists($type->getType())) {
             return $this->mapToArrayOfObjects($type->getType(), $value, $mapper);
         }
 
-        if (class_exists($type->getType()) || interface_exists($type->getType())) {
-            return $this->mapToObject($type->getType(), $value, $mapper);
+        if (class_exists($namespace.'\\'.$type->getType())) {
+            return $this->mapToObject($namespace.'\\'.$type->getType(), $value, $mapper);
         }
 
         throw new \Exception("Unable to map to {$type->getType()}");
@@ -188,9 +151,8 @@ abstract class AbstractPropertyMapper
     /**
      * @param PropertyType $type
      * @param mixed $value
-     * @psalm-assert-if-true scalar $value
      */
-    private function propertyTypeAndValueTypeAreScalarAndSameType(PropertyType $type, $value): bool
+    private function sametypeAndValue(PropertyType $type, $value): bool
     {
         if (! \is_scalar($value) || ! ScalarType::isValid($type->getType())) {
             return false;
@@ -228,32 +190,6 @@ abstract class AbstractPropertyMapper
     }
 
     /**
-     * @template T
-     * @psalm-param class-string<T> $type
-     * @param mixed $value
-     * @return T
-     */
-    private function mapToEnum(string $type, $value)
-    {
-        return call_user_func("{$type}::from", $value);
-    }
-
-    /**
-     * @template T
-     * @psalm-param class-string<T> $type
-     * @param mixed $value
-     * @return T[]
-     */
-    private function mapToArrayOfEnum(string $type, $value): array
-    {
-        return \array_map(function ($val) use ($type) {
-            return $this->mapToEnum($type, $val);
-        }, (array) $value);
-    }
-
-    /**
-     * @template T
-     * @psalm-param class-string<T> $type
      * @param mixed $value
      * @return T
      */
@@ -263,19 +199,12 @@ abstract class AbstractPropertyMapper
             throw TypeException::forArgument(__METHOD__, 'class-string', $type, 1, '$type');
         }
 
-        $reflectionType = new \ReflectionClass($type);
-        if (!$reflectionType->isInstantiable()) {
-            return $this->resolveUnInstantiableType($type, $value, $mapper);
-        }
-
         $instance = new $type();
         $mapper->map($value, $instance);
         return $instance;
     }
 
     /**
-     * @template T
-     * @psalm-param class-string<T> $type
      * @param mixed $value
      * @return array<int, T>
      */
@@ -288,27 +217,5 @@ abstract class AbstractPropertyMapper
             (array) $value
         );
     }
-
-    /**
-     * @template T
-     * @psalm-param class-string<T> $type
-     * @param mixed $value
-     * @return T
-     */
-    private function resolveUnInstantiableType(string $type, $value, MapperInterface $mapper)
-    {
-        try {
-            $instance = $this->nonInstantiableTypeResolver->create($type, $value);
-            $mapper->map($value, $instance);
-            return $instance;
-        } catch (ClassFactoryException $e) {
-            throw new \RuntimeException(
-                "Unable to resolve un-instantiable {$type} as no factory was registered",
-                0,
-                $e
-            );
-        }
-    }
-
 
 }

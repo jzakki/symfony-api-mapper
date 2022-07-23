@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace SymfonyApiMapper\Property;
 
+use SymfonyApiMapper\Factories\MapperInterface;
 use SymfonyApiMapper\Wrapper\ObjectWrapper;
-use SymfonyApiMapper\MapperInterface;
 use SymfonyApiMapper\Helpers\DocBlockAnnotation;
-use SymfonyApiMapper\Helpers\YamlMap;
 
-class XmlPropertyMapper extends AbstractPropertyMapper implements PropertyMapperInterface
+class XmlPropertyMapper extends AbstractPropertyMapper
 {
     
     public function __invoke(
@@ -19,6 +18,8 @@ class XmlPropertyMapper extends AbstractPropertyMapper implements PropertyMapper
         MapperInterface $xmlMapper): void
     {
 
+        $reflectedObject = $object->getReflectedObject();
+        $namespace = $reflectedObject->getNamespaceName();
         $yamlMap = $xmlMapper->getYamlMap();
         $docBlockAnnotation = new DocBlockAnnotation();
         $propertyMap->merge($docBlockAnnotation->buildPropertyMapObjectFromDocBlockAnnotations($object, $yamlMap));
@@ -40,7 +41,7 @@ class XmlPropertyMapper extends AbstractPropertyMapper implements PropertyMapper
                 continue;
             }
 
-            $value = $this->mapPropertyValue($xmlMapper, $property, $value);
+            $value = $this->mapPropertyValue($xmlMapper, $property, $value, $namespace);
             $this->setValue($object, $property, $value);
         }
         

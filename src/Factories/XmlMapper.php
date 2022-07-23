@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SymfonyApiMapper;
+namespace SymfonyApiMapper\Factories;
 
 use SymfonyApiMapper\Exception\TypeException;
 use SymfonyApiMapper\Helpers\YamlMap;
@@ -22,6 +22,26 @@ class XmlMapper implements MapperInterface
     public function __construct(callable $propertyMapper = null)
     {
         $this->propertyMapper = $propertyMapper;
+    }
+
+    /**
+     * @param $xml
+     * @param mixed $object
+     * @return string
+     */
+    public function map($xml, $object)
+    {
+        if(! \is_object($xml)) {
+            $xml = json_decode(json_encode(simplexml_load_string($xml)));
+        }
+
+        if(! \is_object($object)) {
+            throw TypeException::forArgument(__METHOD__, 'object', $object, 2, '$object');
+        }
+        
+        $propertyMap = new PropertyMap();
+        $handler = $this->resolve();
+        $handler($xml, new ObjectWrapper($object), $propertyMap, $this);
     }
 
     /**
@@ -54,23 +74,6 @@ class XmlMapper implements MapperInterface
         return $this;
     }
 
-    /**
-     * @param $xml
-     * @param mixed $object
-     * @return string
-     */
-    public function map($xml, $object)
-    {
-        $xml = json_decode(json_encode(simplexml_load_string($xml)));
-
-        if(! \is_object($object)) {
-            throw TypeException::forArgument(__METHOD__, 'object', $object, 2, '$object');
-        }
-        
-        $propertyMap = new PropertyMap();
-        $handler = $this->resolve();
-        $handler($xml, new ObjectWrapper($object), $propertyMap, $this);
-    }
 
     /** @return Callable */
     public function resolve(): callable

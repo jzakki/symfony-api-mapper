@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SymfonyApiMapper;
+namespace SymfonyApiMapper\Factories;
 
 use SymfonyApiMapper\Exception\TypeException;
 use SymfonyApiMapper\Helpers\YamlMap;
@@ -22,6 +22,27 @@ class JsonMapper implements MapperInterface
     public function __construct(callable $propertyMapper = null)
     {
         $this->propertyMapper = $propertyMapper;
+    }
+
+    /**
+     * @param $json
+     * @param mixed $object
+     * @return string
+     */
+    public function map($json, $object)
+    {
+
+        if(! \is_object($object)) {
+            throw TypeException::forArgument(__METHOD__, 'object', $object, 2, '$object');
+        }
+
+        if(! \is_object($json)){
+            $json = json_decode($json);
+        }
+        
+        $propertyMap = new PropertyMap();
+        $handler = $this->resolve();
+        $handler($json, new ObjectWrapper($object), $propertyMap, $this);
     }
 
     /**
@@ -54,23 +75,6 @@ class JsonMapper implements MapperInterface
         return $this->yamlMap;
     }
 
-    /**
-     * @param $json
-     * @param mixed $object
-     * @return string
-     */
-    public function map($json, $object)
-    {
-        $json = json_decode($json);
-
-        if(! \is_object($object)) {
-            throw TypeException::forArgument(__METHOD__, 'object', $object, 2, '$object');
-        }
-        
-        $propertyMap = new PropertyMap();
-        $handler = $this->resolve();
-        $handler($json, new ObjectWrapper($object), $propertyMap, $this);
-    }
 
     /** @return Callable */
     public function resolve(): callable

@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace SymfonyApiMapper;
 
+use SymfonyApiMapper\Factories\JsonMapperFactory;
+use SymfonyApiMapper\Factories\MapperInterface;
+use SymfonyApiMapper\Factories\XmlMapperFactory;
 use SymfonyApiMapper\Helpers\YamlMap;
 
 class SymfonyApiMapper

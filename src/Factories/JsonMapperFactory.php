@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SymfonyApiMapper;
+namespace SymfonyApiMapper\Factories;
 
+use SymfonyApiMapper\Builders\JsonMapperBuilder;
 use SymfonyApiMapper\Helpers\YamlMap;
 
 class JsonMapperFactory implements MapperFactory
@@ -16,7 +17,7 @@ class JsonMapperFactory implements MapperFactory
         $this->builder = $builder ?? JsonMapperBuilder::new();
     }
 
-    public function create(YamlMap $yamlMap): MapperInterface
+    public function create(YamlMap $yamlMap = null): MapperInterface
     {
         $builder = clone ($this->builder);
         return $builder->build($yamlMap);

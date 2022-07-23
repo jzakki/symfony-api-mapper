@@ -1,2 +1,5 @@
 SymfonyApiMapper\Entity\User:
     full_name: name
+    password: password
+SymfonyApiMapper\Entity\Password:
+    hash: hash 
